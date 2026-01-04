@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<head>
+    <!-- <script src="{{ url_for('static', filename='script.js') }}"></script> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>My favourite movies to watch</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="column">
+                    <a href="{{ url_for('add_movie') }}" class="button">Go to Add Movie</a>
+                    <h2>Titles</h2>
+                    <!-- <ul id="moviesList">
+                            <li><input type="checkbox"> The Matrix, 1999, Keanu Reeves, Laurence Fishburn</li>
+                            <li><input type="checkbox"> Indiana Jones 1989, Harrison Ford, Sean Connery</li>
+                            <li><input type="checkbox"> Casino Royal, 2006, Daniel Craig, Eva Green</li>
+                    </ul> -->
+                    
+                    <form method="POST" action="/">
+                        <ul>
+                        {% for movie in movies %}
+                            <li>
+                                <input type="checkbox" name="movieToRemove" value="{{ movie[0] }}">
+                                {{ movie[1] }}, {{ movie[2] }}, {{ movie[3] }}
+                            </li>
+                        {% endfor %}
+                        </ul>
+                        <button type="submit">Delete selected</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>My Movie Database. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
